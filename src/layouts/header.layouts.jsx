@@ -30,7 +30,8 @@ import Drawer from "../containers/drawer.container";
 
 //////////////////////////////////////////// ICON - IMAGE
 import logo from "./../assets/logo.svg";
-import { logout } from "./../api/axios.utils";
+
+import { signOutStart } from "../redux/user/user.actions";
 
 const useStyles = makeStyles((theme) => ({
   AppBar: {
@@ -160,7 +161,7 @@ ElevationScroll.propTypes = {
   window: PropTypes.func,
 };
 
-const Header = ({ toggleDrawerHidden }) => {
+const Header = ({ toggleDrawerHidden, signOutStart }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
@@ -179,7 +180,7 @@ const Header = ({ toggleDrawerHidden }) => {
 
   const handleMenuCloseLogout = () => {
     setAnchorEl(null);
-    logout();
+    signOutStart();
   };
 
   const menuId = "primary-search-account-menu";
@@ -200,7 +201,11 @@ const Header = ({ toggleDrawerHidden }) => {
       >
         ورود
       </MenuItem>
-      <MenuItem onClick={handleMenuClose} component={"a"} href="http://localhost:3100/">
+      <MenuItem
+        onClick={handleMenuClose}
+        component={"a"}
+        href="http://localhost:3100/"
+      >
         پروفایل
       </MenuItem>
       <MenuItem onClick={handleMenuCloseLogout}>خروج</MenuItem>
@@ -335,6 +340,7 @@ const Header = ({ toggleDrawerHidden }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   toggleDrawerHidden: () => dispatch(toggleDrawerHidden()),
+  signOutStart: () => dispatch(signOutStart()),
 });
 const mapStateToProps = createStructuredSelector({});
 

@@ -10,11 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { CustomizedTextField } from "../components/custom-textField.component";
 
-
-
-
 import {
-  googleSignInStart,
+  // googleSignInStart,
   emailSignInStart,
   switchSignUpSignIn,
 } from "../redux/user/user.actions";
@@ -148,7 +145,7 @@ const SignIN = ({
 
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
-  googleSignInStart: () => dispatch(googleSignInStart()),
+  // googleSignInStart: () => dispatch(googleSignInStart()),
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
 });
