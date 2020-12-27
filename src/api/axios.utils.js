@@ -1,6 +1,8 @@
 /* eslint-disable */
 import axios from "axios";
 import { showAlert } from "./../api/alerts";
+import FormData from 'form-data';
+import fs from 'fs';
 
 export const responseData = axios
   .get("/api/v1/products")
@@ -79,3 +81,27 @@ export const updateDateUser = async (name) => {
     showAlert("error", err.response.data.message);
   }
 };
+
+
+
+const data = new FormData();
+data.append('photo', fs.createReadStream('/Users/mojtaba/Desktop/biareh-server/public/img/users/user-2.jpg'));
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:4000/api/v1/users/updateMe',
+  headers: { 
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZThjOGY5NGUzM2JiYjdkYTk4MjgyNiIsImlhdCI6MTYwOTA5MTMyNiwiZXhwIjoxNjE2ODY3MzI2fQ.CtBHmPyHV6764ltY-ZINVJ6FJJAdA6BTGyv0meVJ-SI', 
+    'Cookie': 'Cookie_1=value; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZThjOGY5NGUzM2JiYjdkYTk4MjgyNiIsImlhdCI6MTYwOTA5MTMyNiwiZXhwIjoxNjE2ODY3MzI2fQ.CtBHmPyHV6764ltY-ZINVJ6FJJAdA6BTGyv0meVJ-SI', 
+    ...data.getHeaders()
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
