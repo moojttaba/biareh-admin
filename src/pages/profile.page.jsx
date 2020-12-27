@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomePage = () => {
+const ProfilePage = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -241,4 +241,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ProfilePage;
