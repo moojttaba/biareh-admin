@@ -12,6 +12,8 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import { CustomizedTextField } from "../components/custom-textField.component";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +59,7 @@ const ProfilePage = () => {
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
   const classes = useStyles();
-  const [productData, setProductData] = useState({
+  const [userData, setUserData] = useState({
     name: "",
     lastName: "",
     email: "",
@@ -77,7 +79,7 @@ const ProfilePage = () => {
     role,
     password,
     passwordConfirm,
-  } = productData;
+  } = userData;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -97,7 +99,7 @@ const ProfilePage = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setProductData({ ...productData, [name]: value });
+    setUserData({ ...userData, [name]: value });
   };
 
   
@@ -241,4 +243,9 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+
+const mapStateToProps = createStructuredSelector({});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
