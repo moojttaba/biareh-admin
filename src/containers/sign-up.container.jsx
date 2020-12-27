@@ -9,11 +9,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Button from "@material-ui/core/Button";
 
-import {
-  googleSignInStart,
-  switchSignUpSignIn,
-  signUpStart,
-} from "../redux/user/user.actions";
+import { switchSignUpSignIn, signUpStart } from "../redux/user/user.actions";
 
 import { CustomizedTextField } from "../components/custom-textField.component";
 
@@ -63,24 +59,6 @@ const SignUp = ({ signUpStart, googleSignInStart, switchSignUpSignIn }) => {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2} direction="column" justify="center">
-          <Grid item>
-            <Button
-              type="button"
-              //onClick={guessSignInStart}
-              onClick={googleSignInStart}
-              fullWidth={true}
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#3e82f7" }}
-              color="primary"
-            >
-              ورود با گوگل
-            </Button>
-          </Grid>
-          <Grid item>
-            <Divider />
-          </Grid>
-
           <Grid
             item
             container
@@ -146,7 +124,7 @@ const SignUp = ({ signUpStart, googleSignInStart, switchSignUpSignIn }) => {
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
+                color="secondary"
                 fullWidth={true}
                 size="large"
               >
@@ -179,7 +157,7 @@ const SignUp = ({ signUpStart, googleSignInStart, switchSignUpSignIn }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
-  googleSignInStart: () => dispatch(googleSignInStart()),
+
   signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
 });
 

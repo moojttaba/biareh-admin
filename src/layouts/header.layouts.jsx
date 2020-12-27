@@ -203,8 +203,8 @@ const Header = ({ toggleDrawerHidden, signOutStart }) => {
       </MenuItem>
       <MenuItem
         onClick={handleMenuClose}
-        component={"a"}
-        href="http://localhost:3100/"
+        component={Link}
+        to="/profile"
       >
         پروفایل
       </MenuItem>

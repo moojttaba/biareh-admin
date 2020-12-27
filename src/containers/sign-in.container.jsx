@@ -11,7 +11,6 @@ import Button from "@material-ui/core/Button";
 import { CustomizedTextField } from "../components/custom-textField.component";
 
 import {
-  // googleSignInStart,
   emailSignInStart,
   switchSignUpSignIn,
 } from "../redux/user/user.actions";
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIN = ({
   emailSignInStart,
-  googleSignInStart,
+
   switchSignUpSignIn,
 }) => {
   const [userCredentials, setUserCredentials] = useState({
@@ -56,24 +55,6 @@ const SignIN = ({
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2} direction="column">
-          {/* <Grid item>
-            <Button
-              type="button"
-              //onClick={guessSignInStart}
-              onClick={googleSignInStart}
-              fullWidth={true}
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#3e82f7" }}
-              color="primary"
-            >
-              ورود با گوگل
-            </Button>
-          </Grid>
-          <Grid item>
-            <Divider />
-          </Grid> */}
-
           <Grid
             item
             container
@@ -145,7 +126,6 @@ const SignIN = ({
 
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
-  // googleSignInStart: () => dispatch(googleSignInStart()),
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
 });
