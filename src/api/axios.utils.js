@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from "axios";
-import { showAlert } from "./alerts";
+import { showAlert } from "./../api/alerts";
 
 export const responseData = axios
   .get("/api/v1/products")
@@ -57,6 +57,24 @@ export const updateSettings = async (data, type) => {
     if (res.data.status === "success") {
       showAlert("success", `${type.toUpperCase()} updated successfully!`);
     }
+  } catch (err) {
+    showAlert("error", err.response.data.message);
+  }
+};
+
+export const updateDateUser = async (name) => {
+  try {
+    axios({
+      method: "PATCH",
+      url: "/api/v1/users/updateMe",
+      data: {
+        name,
+      },
+    });
+
+    // if (res.data.status === "success") {
+    //   showAlert("success", `${type.toUpperCase()} updated successfully!`);
+    // }
   } catch (err) {
     showAlert("error", err.response.data.message);
   }

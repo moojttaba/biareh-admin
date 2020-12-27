@@ -7,15 +7,16 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import axios from "axios";
+
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import { CustomizedTextField } from "../components/custom-textField.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-
 import { selectUserProfile } from "./../redux/user/user.selectors";
+
+import { updateDateUser } from "./../api/axios.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,47 +64,22 @@ const ProfilePage = ({ user }) => {
   const classes = useStyles();
   const [userData, setUserData] = useState({
     name: "",
-    lastName: "",
     email: "",
     photo: "",
-    mobail: "",
-    // role: "",
-    // password: "",
-    // passwordConfirm: "",
   });
 
-  const {
-    name,
-    email,
-    lastName,
-    photo,
-    mobail,
-    role,
-    password,
-    passwordConfirm,
-  } = userData;
+  const { name, email, photo } = userData;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    axios({
-      method: "POST",
-      url: "/api/v1/products",
-      data: {
-        name,
-        email,
-        photo,
-        role,
-        password,
-        passwordConfirm,
-      },
-    });
+    updateDateUser(name);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
   };
-  console.log(user)
+  console.log(user);
 
   return (
     <Fragment>
@@ -119,7 +95,7 @@ const ProfilePage = ({ user }) => {
             <Card>
               <CardHeader
                 classes={{ action: classes.action }}
-                avatar={<Avatar alt={name} src={user.photo} />}
+                avatar={<Avatar alt={user.name} src={user.photo} />}
                 action={
                   <Fragment>
                     <Button
@@ -165,10 +141,10 @@ const ProfilePage = ({ user }) => {
                       variant="outlined"
                       type="text"
                       name="lastName"
-                      value={lastName}
+                      //value={lastName}
                       onChange={handleChange}
                       label="نام خانوادگی"
-                      placeholder={lastName}
+                      //placeholder={lastName}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -188,14 +164,14 @@ const ProfilePage = ({ user }) => {
                       variant="outlined"
                       type="text"
                       name="mobail"
-                      value={mobail}
+                      //value={mobail}
                       onChange={handleChange}
                       label="موبایل"
-                      placeholder={mobail}
+                      //placeholder={mobail}
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      required
+                      // required
                     />
                   </Box>
                   <Box width="50%" mr={2}>
@@ -211,7 +187,7 @@ const ProfilePage = ({ user }) => {
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      required
+                      // required
                     />
                   </Box>
                 </Box>
