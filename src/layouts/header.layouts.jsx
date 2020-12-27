@@ -30,7 +30,7 @@ import Drawer from "../containers/drawer.container";
 
 //////////////////////////////////////////// ICON - IMAGE
 import logo from "./../assets/logo.svg";
-import { logout } from "./../api/login";
+import { logout } from "./../api/axios.utils";
 
 const useStyles = makeStyles((theme) => ({
   AppBar: {

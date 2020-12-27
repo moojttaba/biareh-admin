@@ -1,8 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import axios from "axios";
 import UserActionTypes from "./user.types";
-
-
+import axios from "axios";
 
 import {
   signInSuccess,
@@ -23,26 +21,10 @@ import {
 //   //anonymousLink,
 // } from "../../firebase/firebase.utils";
 
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-
-
-
-export function* getSnapshotFromUserAuth(userAuth, additionalData) {
+export function* getSnapshotFromUserAuth(userAuth) {
   try {
-    const userRef = yield call(
-      //createUserProfileDocument,
-      userAuth,
-      additionalData
-    );
-    const userSnapshot = yield userRef.get();
+    const userRef = yield call(userAuth);
+    const userSnapshot = yield userRef();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
     yield put(signInFailure(error));
@@ -57,14 +39,43 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 //     yield put(signInFailure(error));
 //   }
 // }
-// export function* signInWithEmail({ payload: { email, password } }) {
+export function* signInWithEmail({ payload: { email, password } }) {
+  try {
+    const user = yield axios({
+      method: "POST",
+      url: "/api/v1/users/login",
+      data: {
+        email,
+        password,
+      },
+    });
+    yield put(signInSuccess(user));
+  } catch (error) {
+    yield put(signInFailure(error));
+  }
+}
+
+// export const login = async (email, password) => {
 //   try {
-//     const { user } = yield auth.signInWithEmailAndPassword(email, password);
-//     yield getSnapshotFromUserAuth(user);
-//   } catch (error) {
-//     yield put(signInFailure(error));
+//     const res = await axios({
+//       method: "POST",
+//       url: "/api/v1/users/login",
+//       data: {
+//         email,
+//         password,
+//       },
+//     })
+
+//     if (res.data.status === "success") {
+//       showAlert("success", "Logged in successfully!");
+//       window.setTimeout(() => {
+//         location.assign("/");
+//       }, 1500);
+//     }
+//   } catch (err) {
+//     showAlert("error", err.response.data.message);
 //   }
-// }
+// };
 
 // export function* signInWithEmail({ payload: { email, password } }) {
 //   try {
@@ -80,7 +91,6 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 
 // export function* isUserAuthenticated() {
 //   try {
-//     //yield signInWithInAnonymously();
 
 //     const userAuth = yield getCurrentUser();
 //     if (!userAuth) return;
@@ -116,17 +126,17 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 //   }
 // }
 
-export function* signInAfterSignUp({ payload: { user, additionalData } }) {
-  yield getSnapshotFromUserAuth(user, additionalData);
-}
+// export function* signInAfterSignUp({ payload: { user, additionalData } }) {
+//   yield getSnapshotFromUserAuth(user, additionalData);
+// }
 
 // export function* onGoogleSignInStart() {
 //   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 // }
 
-// export function* onEmailSignInStart() {
-//   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
-// }
+export function* onEmailSignInStart() {
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+}
 
 // export function* onCheckUserSession() {
 //   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
@@ -140,14 +150,14 @@ export function* signInAfterSignUp({ payload: { user, additionalData } }) {
 //   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
 // }
 
-export function* onSignUpSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
-}
+// export function* onSignUpSuccess() {
+//   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
+// }
 
 export function* userSagas() {
   yield all([
     // call(onGoogleSignInStart),
-    // call(onEmailSignInStart),
+    call(onEmailSignInStart),
     // call(isUserAuthenticated),
     // call(onSignOutStart),
     // call(onSignUpStart),
