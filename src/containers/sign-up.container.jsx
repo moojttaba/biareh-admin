@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-
 import Button from "@material-ui/core/Button";
-
 import { switchSignUpSignIn, signUpStart } from "../redux/user/user.actions";
-
 import { CustomizedTextField } from "../components/custom-textField.component";
-
-// import { signup } from "./../api/login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({ signUpStart, googleSignInStart, switchSignUpSignIn }) => {
+const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
   const [userCredentials, setUserCredentials] = useState({
     name: "",
     email: "",
@@ -157,7 +150,6 @@ const SignUp = ({ signUpStart, googleSignInStart, switchSignUpSignIn }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
-
   signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
 });
 
