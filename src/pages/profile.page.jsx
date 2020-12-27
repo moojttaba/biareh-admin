@@ -15,6 +15,8 @@ import { CustomizedTextField } from "../components/custom-textField.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
+import { selectUserProfile } from "./../redux/user/user.selectors";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -54,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfilePage = () => {
+const ProfilePage = ({ user }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -101,8 +103,7 @@ const ProfilePage = () => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
   };
-
-  
+  console.log(user)
 
   return (
     <Fragment>
@@ -118,7 +119,7 @@ const ProfilePage = () => {
             <Card>
               <CardHeader
                 classes={{ action: classes.action }}
-                avatar={<Avatar alt={name} src={photo} />}
+                avatar={<Avatar alt={name} src={user.photo} />}
                 action={
                   <Fragment>
                     <Button
@@ -152,7 +153,7 @@ const ProfilePage = () => {
                       value={name}
                       onChange={handleChange}
                       label="نام"
-                      placeholder={name}
+                      placeholder={user.name}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -206,7 +207,7 @@ const ProfilePage = () => {
                       value={email}
                       onChange={handleChange}
                       label="ایمیل"
-                      placeholder={email}
+                      placeholder={user.email}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -243,8 +244,9 @@ const ProfilePage = () => {
   );
 };
 
-
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  user: selectUserProfile,
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 

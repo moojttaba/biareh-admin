@@ -11,16 +11,6 @@ import {
   // signUpFailure,
 } from "./user.actions";
 
-export function* getSnapshotFromUserAuth(userAuth) {
-  try {
-    const userRef = yield call(userAuth);
-    const userSnapshot = yield userRef();
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
-  } catch (error) {
-    yield put(signInFailure(error));
-  }
-}
-
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const user = yield axios({
@@ -30,7 +20,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
         email,
         password,
       },
-    });
+    }).then((response) => response.data);
     yield put(signInSuccess(user));
   } catch (error) {
     yield put(signInFailure(error));

@@ -2,6 +2,8 @@ import { createSelector } from 'reselect';
 
 const selectUser = state => state.user;
 
+
+
 export const user = createSelector(
   [selectUser],
   user => user
@@ -14,7 +16,13 @@ export const selectSWitchSignUpSignIn = createSelector(
 
 export const selectCurrentUser = createSelector(
   [selectUser],
-  user => user.currentUser.data.data
+  user => user.currentUser
+);
+
+
+export const selectUserProfile = createSelector(
+  [selectUser],
+  user => user.currentUser.data.user
 );
 
 
