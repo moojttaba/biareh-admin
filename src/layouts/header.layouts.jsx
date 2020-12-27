@@ -200,7 +200,7 @@ const Header = ({ toggleDrawerHidden }) => {
       >
         ورود
       </MenuItem>
-      <MenuItem onClick={handleMenuClose} component={Link} to="/Profile">
+      <MenuItem onClick={handleMenuClose} component={"a"} href="http://localhost:3100/">
         پروفایل
       </MenuItem>
       <MenuItem onClick={handleMenuCloseLogout}>خروج</MenuItem>
