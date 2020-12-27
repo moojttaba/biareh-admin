@@ -1,6 +1,8 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-
+import axios from "axios";
 import UserActionTypes from "./user.types";
+
+
 
 import {
   signInSuccess,
@@ -20,6 +22,18 @@ import {
 //   //mergeAccounts,
 //   //anonymousLink,
 // } from "../../firebase/firebase.utils";
+
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+
+
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {

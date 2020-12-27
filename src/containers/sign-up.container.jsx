@@ -17,7 +17,7 @@ import {
 
 import { CustomizedTextField } from "../components/custom-textField.component";
 
-import { signup } from "./../api/login";
+// import { signup } from "./../api/login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +48,7 @@ const SignUp = ({ signUpStart, googleSignInStart, switchSignUpSignIn }) => {
       return;
     }
 
-    signup( name, email, password, passwordConfirm );
+    // signup( name, email, password, passwordConfirm );
   };
 
   const handleChange = (event) => {

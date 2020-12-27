@@ -45,8 +45,8 @@ const SignIN = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // emailSignInStart(email, password);
-    login(email, password);
+    emailSignInStart(email, password);
+    //login(email, password);
   };
 
   const handleChange = (event) => {
