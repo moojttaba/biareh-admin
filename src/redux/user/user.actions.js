@@ -1,17 +1,10 @@
 import UserActionTypes from "./user.types";
 
 
-
-
-
-
 export const switchSignUpSignIn = () => ({
   type: UserActionTypes.TOGGLE_SIGN_SWITCH,
 });
 
-export const googleSignInStart = () => ({
-  type: UserActionTypes.GOOGLE_SIGN_IN_START,
-});
 
 export const signInSuccess = (user) => ({
   type: UserActionTypes.SIGN_IN_SUCCESS,

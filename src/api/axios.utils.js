@@ -6,9 +6,6 @@ export const responseData = axios
   .get("/api/v1/products")
   .then((response) => response.data);
 
-
-
-
 export const login = async (email, password) => {
   try {
     const res = await axios({
@@ -18,7 +15,7 @@ export const login = async (email, password) => {
         email,
         password,
       },
-    })
+    });
 
     if (res.data.status === "success") {
       showAlert("success", "Logged in successfully!");
@@ -41,5 +38,26 @@ export const logout = async () => {
   } catch (err) {
     console.log(err.response);
     showAlert("error", "Error logging out! Try again.");
+  }
+};
+
+export const updateSettings = async (data, type) => {
+  try {
+    const url =
+      type === "password"
+        ? "/api/v1/users/updateMyPassword"
+        : "/api/v1/users/updateMe";
+
+    const res = await axios({
+      method: "PATCH",
+      url,
+      data,
+    });
+
+    if (res.data.status === "success") {
+      showAlert("success", `${type.toUpperCase()} updated successfully!`);
+    }
+  } catch (err) {
+    showAlert("error", err.response.data.message);
   }
 };
