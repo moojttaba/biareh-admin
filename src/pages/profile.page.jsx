@@ -15,7 +15,7 @@ import { CustomizedTextField } from "../components/custom-textField.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectUserProfile } from "./../redux/user/user.selectors";
-
+import { updateSettings } from "./../api/axios.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,14 +64,15 @@ const ProfilePage = ({ user }) => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
-    photo: "",
+    //photo: "",
   });
 
-  const { name, email, photo } = userData;
+  const { name, email } = userData;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
- 
+    // updateSettings(userData)
+    updateSettings(name);
   };
 
   const handleChange = (event) => {
@@ -94,7 +95,12 @@ const ProfilePage = ({ user }) => {
             <Card>
               <CardHeader
                 classes={{ action: classes.action }}
-                avatar={<Avatar alt={user.name} src={user.photo} />}
+                avatar={
+                  <Avatar
+                    alt={user.name}
+                    //src={user.photo}
+                  />
+                }
                 action={
                   <Fragment>
                     <Button
