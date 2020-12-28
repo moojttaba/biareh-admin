@@ -60,17 +60,17 @@ const ProductAddPage = (props) => {
           {...input}
           label={label}
           variant="outlined"
-          fullWidth={true}
-          helperText="Incorrect entry."
+          helperText={meta.error}
+          autoComplete={false}
+          inputProps={{
+            autoComplete: "off",
+          }}
         />
-      
       </Fragment>
     );
   };
 
-  const onSubmit = (formValues) => {
-    console.log(formValues);
-  };
+  const onSubmit = (formValues) => {};
 
   return (
     <Fragment>
@@ -94,6 +94,7 @@ const ProductAddPage = (props) => {
                     name="title"
                     component={renderInput}
                     label="enter title"
+                    //required
                   />
                 </Box>
                 <Box mt={2}>
@@ -101,6 +102,7 @@ const ProductAddPage = (props) => {
                     name="description"
                     component={renderInput}
                     label="enter description"
+                    required
                   />
                 </Box>
               </CardContent>
@@ -122,8 +124,10 @@ const validate = (formValues) => {
   }
 
   if (!formValues.description) {
-    errors.title = "you must berini";
+    errors.description = "you must berini";
   }
+
+  return errors;
 };
 
 export default reduxForm({

@@ -4,6 +4,9 @@ import TextField from "@material-ui/core/TextField";
 export const MyTextField = withStyles({
   root: {
     "& input": {},
+    "& p": {
+      textAlign: "right !important",
+    },
 
     "& label": {
       right: "0 !important",
