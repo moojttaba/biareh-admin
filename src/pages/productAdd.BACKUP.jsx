@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { MyTextField } from "./../components/custom-textField.component";
 
@@ -47,22 +48,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductAddPage = () => {
+const ProductAddPage = (props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
   const classes = useStyles();
 
-  const renderInput = ({ input, label }) => {
+  const renderInput = ({ input, label, meta }) => {
     return (
       <Fragment>
-        <MyTextField {...input} label={label} variant="outlined" />
+        <MyTextField
+          {...input}
+          label={label}
+          variant="outlined"
+          fullWidth={true}
+          helperText="Incorrect entry."
+        />
+      
       </Fragment>
     );
   };
 
+  const onSubmit = (formValues) => {
+    console.log(formValues);
+  };
+
   return (
     <Fragment>
-      <Box className={classes.root} component="form">
+      <Box
+        className={classes.root}
+        component="form"
+        onSubmit={props.handleSubmit(onSubmit)}
+      >
         <Box width={matches ? "60%" : "90%"} mb={2.4} flexDirection="column">
           <Box className={classes.Container}>
             <Card>
@@ -84,18 +100,33 @@ const ProductAddPage = () => {
                   <Field
                     name="description"
                     component={renderInput}
-                    label="enter desddddddcription"
+                    label="enter description"
                   />
                 </Box>
               </CardContent>
             </Card>
           </Box>
         </Box>
+        <Button variant="contained" type="submit" color="primary">
+          salam
+        </Button>
       </Box>
     </Fragment>
   );
 };
 
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.title) {
+    errors.title = "you must begozii";
+  }
+
+  if (!formValues.description) {
+    errors.title = "you must berini";
+  }
+};
+
 export default reduxForm({
   form: "productAddPage",
+  validate,
 })(ProductAddPage);
