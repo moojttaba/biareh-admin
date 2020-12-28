@@ -16,7 +16,6 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectUserProfile } from "./../redux/user/user.selectors";
 
-import { updateDateUser } from "./../api/axios.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +71,7 @@ const ProfilePage = ({ user }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    updateDateUser(name);
+ 
   };
 
   const handleChange = (event) => {
