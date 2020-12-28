@@ -95,7 +95,7 @@ const SignIN = ({
                 variant="contained"
                 fullWidth={true}
                 size="large"
-                color="secondary"
+                color="primary"
               >
                 ورود
               </Button>
@@ -111,7 +111,7 @@ const SignIN = ({
               >
                 <Typography variant="body2" color="textSecondary" component="p">
                   آیا اکانت ندارید؟
-                  <Button color="secondary" onClick={switchSignUpSignIn}>
+                  <Button color="primary" onClick={switchSignUpSignIn}>
                     ثبت نام
                   </Button>
                 </Typography>
