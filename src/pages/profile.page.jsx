@@ -14,7 +14,10 @@ import Divider from "@material-ui/core/Divider";
 import { CustomizedTextField } from "../components/custom-textField.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectUserProfile } from "./../redux/user/user.selectors";
+import {
+  selectUserProfile,
+  selectUserProfileToken,
+} from "./../redux/user/user.selectors";
 import { updateSettings } from "./../api/axios.utils";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfilePage = ({ user }) => {
+const ProfilePage = ({ user, token }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -69,17 +72,19 @@ const ProfilePage = ({ user }) => {
 
   const { name, email } = userData;
 
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     // updateSettings(userData)
-    updateSettings(name);
+    updateSettings(userData, token);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
   };
-  console.log(user);
+  // console.log(token);
 
   return (
     <Fragment>
@@ -184,7 +189,7 @@ const ProfilePage = ({ user }) => {
                       fullWidth={true}
                       variant="outlined"
                       type="email"
-                      name="salePrice"
+                      name="email"
                       value={email}
                       onChange={handleChange}
                       label="ایمیل"
@@ -227,6 +232,7 @@ const ProfilePage = ({ user }) => {
 
 const mapStateToProps = createStructuredSelector({
   user: selectUserProfile,
+  token: selectUserProfileToken,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

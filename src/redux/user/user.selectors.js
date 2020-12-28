@@ -25,4 +25,9 @@ export const selectUserProfile = createSelector(
   user => user.currentUser.data.user
 );
 
+export const selectUserProfileToken = createSelector(
+  [selectUser],
+  user => user.currentUser.token
+);
+
 
