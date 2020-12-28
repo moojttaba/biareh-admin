@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
-import { CustomizedTextField } from "../components/custom-textField.component";
+import { MyTextField } from "../components/custom-textField.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -128,7 +128,7 @@ const ProfilePage = ({ user, token }) => {
                   mt={2}
                 >
                   <Box width="50%" ml={2}>
-                    <CustomizedTextField
+                    <MyTextField
                       fullWidth={true}
                       variant="outlined"
                       type="text"
@@ -143,7 +143,7 @@ const ProfilePage = ({ user, token }) => {
                     />
                   </Box>
                   <Box width="50%" mr={2}>
-                    <CustomizedTextField
+                    <MyTextField
                       fullWidth={true}
                       variant="outlined"
                       type="text"
@@ -166,7 +166,7 @@ const ProfilePage = ({ user, token }) => {
                   mt={2}
                 >
                   <Box width="50%" ml={2}>
-                    <CustomizedTextField
+                    <MyTextField
                       fullWidth={true}
                       variant="outlined"
                       type="file"
@@ -183,7 +183,7 @@ const ProfilePage = ({ user, token }) => {
                     />
                   </Box>
                   <Box width="50%" mr={2}>
-                    <CustomizedTextField
+                    <MyTextField
                       fullWidth={true}
                       variant="outlined"
                       type="email"

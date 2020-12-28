@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 import Button from "@material-ui/core/Button";
-import { CustomizedTextField } from "../components/custom-textField.component";
+import { MyTextField } from "../components/custom-textField.component";
 
 import {
   emailSignInStart,
@@ -64,7 +64,7 @@ const SignIN = ({
             direction="column"
           >
             <Grid item>
-              <CustomizedTextField
+              <MyTextField
                 fullWidth={true}
                 variant="outlined"
                 className={classes.margin}
@@ -77,7 +77,7 @@ const SignIN = ({
               />
             </Grid>
             <Grid item>
-              <CustomizedTextField
+              <MyTextField
                 fullWidth={true}
                 variant="outlined"
                 className={classes.margin}

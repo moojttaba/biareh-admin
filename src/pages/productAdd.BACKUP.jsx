@@ -6,7 +6,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { ValidationTextField } from "./../components/custom-textField.component";
+import { MyTextField } from "./../components/custom-textField.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,12 +54,8 @@ const ProductAddPage = () => {
 
   const renderInput = ({ input, label }) => {
     return (
-      // <Fragment>
-      //   <InputLabel>{label}</InputLabel>
-      //   <MyInput {...input} />
-      // </Fragment>
       <Fragment>
-        <ValidationTextField {...input} label={label} variant="outlined" />
+        <MyTextField {...input} label={label} variant="outlined" />
       </Fragment>
     );
   };
@@ -88,7 +84,7 @@ const ProductAddPage = () => {
                   <Field
                     name="description"
                     component={renderInput}
-                    label="enter description"
+                    label="enter desddddddcription"
                   />
                 </Box>
               </CardContent>

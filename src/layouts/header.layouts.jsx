@@ -257,7 +257,7 @@ const Header = ({ toggleDrawerHidden, signOutStart }) => {
     <Fragment>
       <ElevationScroll>
         <Box display="flex">
-          <AppBar position="fixed" className={classes.AppBar}>
+          <AppBar position="fixed" className={classes.AppBar} color="secondary">
             <Toolbar className={classes.Toolbar} disableGutters>
               {matches ? (
                 <Box display="flex" flexDirection="row" alignItems="center">

@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { switchSignUpSignIn, signUpStart } from "../redux/user/user.actions";
-import { CustomizedTextField } from "../components/custom-textField.component";
+import { MyTextField } from "../components/custom-textField.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +61,7 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
             direction="column"
           >
             <Grid item>
-              <CustomizedTextField
+              <MyTextField
                 fullWidth={true}
                 variant="outlined"
                 className={classes.margin}
@@ -74,7 +74,7 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
               />
             </Grid>
             <Grid item>
-              <CustomizedTextField
+              <MyTextField
                 fullWidth={true}
                 variant="outlined"
                 className={classes.margin}
@@ -87,7 +87,7 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
               />
             </Grid>
             <Grid item>
-              <CustomizedTextField
+              <MyTextField
                 fullWidth={true}
                 variant="outlined"
                 className={classes.margin}
@@ -100,7 +100,7 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
               />
             </Grid>
             <Grid item>
-              <CustomizedTextField
+              <MyTextField
                 className={classes.margin}
                 fullWidth={true}
                 variant="outlined"
