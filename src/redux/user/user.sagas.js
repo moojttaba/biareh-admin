@@ -7,8 +7,8 @@ import {
   signInFailure,
   signOutSuccess,
   signOutFailure,
-  // signUpSuccess,
-  // signUpFailure,
+  signUpSuccess,
+  signUpFailure,
 } from "./user.actions";
 
 export function* signInWithEmail({ payload: { email, password } }) {
@@ -39,46 +39,42 @@ export function* signOut() {
   }
 }
 
-
-
-// export function* signUp({ payload: { email, password, displayName } }) {
-//   try {
-//     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-//     yield put(signUpSuccess({ user, additionalData: { displayName } }));
-//   } catch (error) {
-//     yield put(signUpFailure(error));
-//   }
-// }
-
-// export function* signInAfterSignUp({ payload: { user, additionalData } }) {
-//   yield getSnapshotFromUserAuth(user, additionalData);
-// }
+export function* signUp({
+  payload: { name, email, password, passwordConfirm },
+}) {
+  try {
+    const user = yield axios({
+      method: "POST",
+      url: "/api/v1/users/signup",
+      data: {
+        name,
+        email,
+        password,
+        passwordConfirm,
+      },
+    }).then((response) => response.data);
+    yield put(signUpSuccess(user));
+  } catch (error) {
+    yield put(signUpFailure(error));
+  }
+}
 
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
-// export function* onCheckUserSession() {
-//   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
-// }
-
 export function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
-// export function* onSignUpStart() {
-//   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
-// }
-
-// export function* onSignUpSuccess() {
-//   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
-// }
+export function* onSignUpStart() {
+  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
+}
 
 export function* userSagas() {
   yield all([
     call(onEmailSignInStart),
     call(onSignOutStart),
-    // call(onSignUpStart),
-    // call(onSignUpSuccess),
+    call(onSignUpStart),
   ]);
 }
