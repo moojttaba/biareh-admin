@@ -18,6 +18,7 @@ import signImage from "../assets/ungate-shipt-shopper.jpg";
 // import SimpleHeader from '../layouts/header-simple.layout';
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Toolbar from "@material-ui/core/Toolbar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridItem: {
     minWidth: 500,
+    marginTop: theme.spacing(4),
   },
   img: {
     maxWidth: "100%",
@@ -54,10 +56,11 @@ const SignInAndSignUpPage = ({ signUpTrue }) => {
         justify="center"
         alignItems="center"
         direction={matches ? "column" : "row"}
-        spacing={9}
+       
+        
       >
-        <Grid item className={classes.gridItem} xs={3}>
-          <Grid container spacing={2} direction="column">
+        <Grid item className={classes.gridItem} xs={3} >
+          <Grid container spacing={3} direction="column"   alignItems="center">
             <Grid item className={classes.link}>
               <Typography variant="h4" color="textSecondary">
                 خوش امدید
@@ -74,12 +77,13 @@ const SignInAndSignUpPage = ({ signUpTrue }) => {
           </Grid>
         </Grid>
 
-        <Grid item className={classes.gridItem} xs={3}>
+        <Grid item className={classes.gridItem} xs={3} >
           <Grid container spacing={2} direction="column">
             {signUpTrue ? <SignIn /> : <SignUp />}
           </Grid>
         </Grid>
       </Grid>
+      <Toolbar />
     
     </React.Fragment>
   );
