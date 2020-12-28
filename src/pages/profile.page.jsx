@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Fragment } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -7,7 +7,6 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
@@ -19,6 +18,8 @@ import {
   selectUserProfileToken,
 } from "./../redux/user/user.selectors";
 import { updateSettings } from "./../api/axios.utils";
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,8 +73,6 @@ const ProfilePage = ({ user, token }) => {
 
   const { name, email } = userData;
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     // updateSettings(userData)
@@ -84,7 +83,10 @@ const ProfilePage = ({ user, token }) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
   };
-  // console.log(token);
+  const handleClick = () => {
+    
+
+  };
 
   return (
     <Fragment>
@@ -112,6 +114,7 @@ const ProfilePage = ({ user, token }) => {
                       variant="outlined"
                       color="secondary"
                       style={{ marginLeft: 10 }}
+                      onClick={handleClick}
                     >
                       اپلود عکس
                     </Button>
