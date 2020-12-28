@@ -6,12 +6,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-import InputBase from "@material-ui/core/InputBase";
-// import {
-//   CustomizedTextField,
-//   BootstrapInput,
-// } from "./../components/custom-textField.component";
+import { ValidationTextField } from "./../components/custom-textField.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,12 +52,15 @@ const ProductAddPage = () => {
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
   const classes = useStyles();
 
-  const renderInput = (formProps) => {
+  const renderInput = ({ input, label }) => {
     return (
-      <InputBase
-        onChange={formProps.input.onChange}
-        value={formProps.input.value}
-      />
+      // <Fragment>
+      //   <InputLabel>{label}</InputLabel>
+      //   <MyInput {...input} />
+      // </Fragment>
+      <Fragment>
+        <ValidationTextField {...input} label={label} variant="outlined" />
+      </Fragment>
     );
   };
 
@@ -80,10 +78,18 @@ const ProductAddPage = () => {
               />
               <CardContent>
                 <Box mt={2}>
-                  <Field name="title" component={renderInput} />
+                  <Field
+                    name="title"
+                    component={renderInput}
+                    label="enter title"
+                  />
                 </Box>
                 <Box mt={2}>
-                  <Field name="description" component={renderInput} />
+                  <Field
+                    name="description"
+                    component={renderInput}
+                    label="enter description"
+                  />
                 </Box>
               </CardContent>
             </Card>

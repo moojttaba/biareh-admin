@@ -1,6 +1,15 @@
-import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import React from "react";
+import {
+  fade,
+  withStyles,
+  makeStyles,
+  createMuiTheme,
+} from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
+
+import TextField from "@material-ui/core/TextField";
+
+import { green } from "@material-ui/core/colors";
 
 export const CustomizedTextField = withStyles((theme) => ({
   root: {
@@ -117,3 +126,41 @@ export const BootstrapInput = withStyles((theme) => ({
     },
   },
 }))(InputBase);
+
+export const ValidationTextField = withStyles({
+  root: {
+    "& label": {
+      right: "0 !important",
+      transform: "translate(-10px, 18px)",
+      transformOrigin: "top right",
+      
+    },
+
+    "& .MuiInputLabel-shrink": {
+      paddingRight: "8px",
+      transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+      color: "#00897b",
+      transform: "translate(-8px, -7px) scale(0.75)",
+      transformOrigin: "top right",
+    },
+
+    "& input:valid + fieldset": {
+      borderColor: "green",
+      borderWidth: 2,
+    },
+    "& input:invalid + fieldset": {
+      borderColor: "red",
+      borderWidth: 2,
+    },
+    "& input:valid:focus + fieldset": {
+      borderLeftWidth: 6,
+      padding: "4px !important", // override inline-style
+    },
+    "& fieldset": {
+      "& legend": {
+        textAlign: "right !important",
+        "& span": {},
+      },
+    },
+  },
+})(TextField);
