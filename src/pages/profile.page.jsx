@@ -69,7 +69,7 @@ const ProfilePage = ({ user, token }) => {
     photo: "",
   });
 
-  const { name, email } = userData;
+  const { name, email, photo } = userData;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -82,6 +82,8 @@ const ProfilePage = ({ user, token }) => {
     setUserData({ ...userData, [name]: value });
   };
   const handleClick = () => {};
+
+  console.log(photo);
 
   return (
     <Fragment>
@@ -170,7 +172,7 @@ const ProfilePage = ({ user, token }) => {
                       type="file"
                       accept="image/*"
                       name="photo"
-                      //value={mobail}
+                      value={photo}
                       onChange={handleChange}
                       label="عکس"
                       //placeholder={mobail}
