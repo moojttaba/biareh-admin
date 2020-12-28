@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { Fragment } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -18,8 +18,6 @@ import {
   selectUserProfileToken,
 } from "./../redux/user/user.selectors";
 import { updateSettings } from "./../api/axios.utils";
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +66,7 @@ const ProfilePage = ({ user, token }) => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
-    //photo: "",
+    photo: "",
   });
 
   const { name, email } = userData;
@@ -83,10 +81,7 @@ const ProfilePage = ({ user, token }) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
   };
-  const handleClick = () => {
-    
-
-  };
+  const handleClick = () => {};
 
   return (
     <Fragment>
@@ -102,12 +97,7 @@ const ProfilePage = ({ user, token }) => {
             <Card>
               <CardHeader
                 classes={{ action: classes.action }}
-                avatar={
-                  <Avatar
-                    alt={user.name}
-                    //src={user.photo}
-                  />
-                }
+                avatar={<Avatar alt={user.name} src={user.photo} />}
                 action={
                   <Fragment>
                     <Button
@@ -175,11 +165,12 @@ const ProfilePage = ({ user, token }) => {
                     <CustomizedTextField
                       fullWidth={true}
                       variant="outlined"
-                      type="text"
-                      name="mobail"
+                      type="file"
+                      accept="image/*"
+                      name="photo"
                       //value={mobail}
                       onChange={handleChange}
-                      label="موبایل"
+                      label="عکس"
                       //placeholder={mobail}
                       InputLabelProps={{
                         shrink: true,
