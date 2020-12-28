@@ -8,10 +8,10 @@ import CardContent from "@material-ui/core/CardContent";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import InputBase from "@material-ui/core/InputBase";
-import {
-  CustomizedTextField,
-  BootstrapInput,
-} from "./../components/custom-textField.component";
+// import {
+//   CustomizedTextField,
+//   BootstrapInput,
+// } from "./../components/custom-textField.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,10 +57,13 @@ const ProductAddPage = () => {
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
   const classes = useStyles();
 
-  const renderInput = ({ input }) => {
-
-    return <input {...input} 
-    />;
+  const renderInput = (formProps) => {
+    return (
+      <InputBase
+        onChange={formProps.input.onChange}
+        value={formProps.input.value}
+      />
+    );
   };
 
   return (
