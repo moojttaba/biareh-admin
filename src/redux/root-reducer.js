@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 import uiReducer from "./ui/ui.reducer";
 import userReducer from "./user/user.reducer";
-import formReducer from "./form/form.reducer";
+import { reducer as formReducer } from 'redux-form';
 
 const persistConfig = {
   key: "root",

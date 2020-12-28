@@ -14,7 +14,7 @@ import Header from "./layouts/header.layouts";
 //////////////////////////////////////////// PAGES
 const HomePage = lazy(() => import("./pages/home.page"));
 const ProductsPage = lazy(() => import("./pages/products.page"));
-const ProductsAddPage = lazy(() => import("./pages/productAdd.page"));
+const ProductsAddPage = lazy(() => import("./pages/productAdd.BACKUP"));
 const SignInAndSignUpPage = lazy(() =>
   import("./pages/sign-up-and-sign-in.page")
 );
