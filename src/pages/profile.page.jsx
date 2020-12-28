@@ -97,7 +97,9 @@ const ProfilePage = ({ user, token }) => {
             <Card>
               <CardHeader
                 classes={{ action: classes.action }}
-                avatar={<Avatar alt={user.name} src={user.photo} />}
+                avatar={
+                  <Avatar alt={user.name} src={`img/users/${user.photo}`} />
+                }
                 action={
                   <Fragment>
                     <Button
