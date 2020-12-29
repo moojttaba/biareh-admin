@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { renderTextField } from "./../components/form/material-ui.form";
 import { fetchPosts } from "../redux/API/API.actions";
+import { createStructuredSelector } from "reselect";
 
 import {
   emailSignInStart,
@@ -23,13 +24,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
+const SignIN = ({
+  emailSignInStart,
+  switchSignUpSignIn,
+  handleSubmit,
+  history,
+}) => {
   const classes = useStyles();
 
-  const onSubmit = (values) => {
-    emailSignInStart(values.email, values.password);
-
-    console.log(values);
+  const onSubmit = ({email,password}) => {
+    emailSignInStart(email, password,() => {
+      // history.push("/");
+    } );
+    // history.push("/");
+    //console.log(values);
   };
 
   return (
@@ -113,8 +121,9 @@ const validate = (formValues) => {
   return errors;
 };
 
-const mapStateToProps = (state) => ({});
+//////////////// REDUX MANAGER
 
+const mapStateToProps = createStructuredSelector({});
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
