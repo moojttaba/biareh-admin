@@ -1,113 +1,81 @@
-import React, { useState } from "react";
+import { Fragment } from "react";
 import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { switchSignUpSignIn, signUpStart } from "../redux/user/user.actions";
-import { MyTextField } from "../components/form/custom-material-ui-form.styles";
+import { renderTextField } from "./../components/form/material-ui.form";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
-    maxWidth: 500,
+    minWidth: 400,
   },
 }));
 
-const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
-  const [userCredentials, setUserCredentials] = useState({
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
-  });
+const SignUp = ({ signUpStart, switchSignUpSignIn, handleSubmit }) => {
+  const classes = useStyles();
 
-  const { name, email, password, passwordConfirm } = userCredentials;
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (password !== passwordConfirm) {
-      alert("passwords don't match");
-      return;
-    }
-
+  const onSubmit = ({ name, email, password, passwordConfirm }) => {
     signUpStart(name, email, password, passwordConfirm);
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setUserCredentials({ ...userCredentials, [name]: value });
-  };
-
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Fragment>
       <Paper className={classes.paper}>
         <Grid container spacing={2} direction="column" justify="center">
           <Grid
             item
             container
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             spacing={4}
             direction="column"
           >
             <Grid item>
-              <MyTextField
+              <Field
+                component={renderTextField}
                 fullWidth={true}
                 variant="outlined"
-                className={classes.margin}
                 type="text"
                 name="name"
-                value={name}
-                onChange={handleChange}
                 label="نام کاربر"
                 required
               />
             </Grid>
             <Grid item>
-              <MyTextField
+              <Field
+                component={renderTextField}
                 fullWidth={true}
                 variant="outlined"
-                className={classes.margin}
                 type="text"
                 name="email"
-                value={email}
-                onChange={handleChange}
                 label="ایمیل"
                 required
               />
             </Grid>
             <Grid item>
-              <MyTextField
+              <Field
+                component={renderTextField}
                 fullWidth={true}
                 variant="outlined"
-                className={classes.margin}
                 type="password"
                 name="password"
-                value={password}
-                onChange={handleChange}
                 label="رمز عبور"
                 required
               />
             </Grid>
             <Grid item>
-              <MyTextField
-                className={classes.margin}
+              <Field
+                component={renderTextField}
                 fullWidth={true}
                 variant="outlined"
                 type="password"
                 name="passwordConfirm"
-                value={passwordConfirm}
-                onChange={handleChange}
                 label="تایید رمز عبور"
                 required
               />
@@ -117,7 +85,7 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
               <Button
                 type="submit"
                 variant="contained"
-                color="secondary"
+                color="primary"
                 fullWidth={true}
                 size="large"
               >
@@ -135,7 +103,7 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
               >
                 <Typography variant="body2" color="textSecondary" component="p">
                   آیا اکانت دارید؟
-                  <Button color="secondary" onClick={switchSignUpSignIn}>
+                  <Button color="primary" onClick={switchSignUpSignIn}>
                     ورود
                   </Button>
                 </Typography>
@@ -144,8 +112,29 @@ const SignUp = ({ signUpStart, switchSignUpSignIn }) => {
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    </Fragment>
   );
+};
+
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.email) {
+    errors.name = "you must begozii";
+  }
+
+  if (!formValues.email) {
+    errors.password = "you must berini";
+  }
+
+  if (!formValues.email) {
+    errors.password = "you must berini";
+  }
+
+  if (!formValues.email) {
+    errors.passwordConfirm = "you must berini";
+  }
+
+  return errors;
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -154,4 +143,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(signUpStart({ name, email, password, passwordConfirm })),
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default reduxForm({
+  validate,
+  form: "SignUpWithEmailAndPassword",
+})(connect(null, mapDispatchToProps)(SignUp));

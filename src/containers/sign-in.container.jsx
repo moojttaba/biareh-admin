@@ -7,7 +7,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { renderTextField } from "./../components/form/material-ui.form";
-import { fetchPosts } from "../redux/API/API.actions";
 import { createStructuredSelector } from "reselect";
 import {
   emailSignInStart,
@@ -68,7 +67,6 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
                 fullWidth={true}
                 size="large"
                 color="primary"
-                onClick={fetchPosts}
               >
                 ورود
               </Button>
@@ -114,11 +112,12 @@ const validate = (formValues) => {
 
 const mapStateToProps = createStructuredSelector({});
 const mapDispatchToProps = (dispatch) => ({
-  fetchPosts: () => dispatch(fetchPosts()),
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
 });
+
+
 export default reduxForm({
   validate,
   form: "SignInWithEmailAndPassword",
