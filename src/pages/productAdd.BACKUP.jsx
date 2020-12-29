@@ -61,7 +61,6 @@ const ProductAddPage = (props) => {
           label={label}
           variant="outlined"
           helperText={meta.error}
-       
           inputProps={{
             autoComplete: "off",
           }}
