@@ -1,4 +1,4 @@
-import APIActionTypes from "./API.actions";
+import APIActionTypes from "./API.types";
 
 const INITIAL_STATE = {
   request: null,
@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 const APIReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case APIActionTypes.FETCH_POSTS:
-      console.log(action.payload.data);
       return {
-       // ...state,
+        ...state,
+        request: action.payload.data,
       };
 
     default:

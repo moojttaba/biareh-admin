@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 // import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-
 import Button from "@material-ui/core/Button";
 import { MyTextField } from "../components/form/custom-material-ui-form.styles";
+
+import { fetchPosts } from "../redux/API/API.actions";
 
 import {
   emailSignInStart,
@@ -27,9 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit, meta}) => {
+const SignIN = ({
+  emailSignInStart,
+  switchSignUpSignIn,
+  handleSubmit,
+  fetchPosts,
+  meta,
+}) => {
   const classes = useStyles();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -37,8 +41,6 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit, meta}) => 
   });
 
   const { email, password } = userCredentials;
-
-  
 
   // const handleChange = (event) => {
   //   const { name, value } = event.target;
@@ -56,9 +58,6 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit, meta}) => 
     //emailSignInStart(email, password);
     //   //login(email, password);
   };
-
-
-
 
   return (
     <div className={classes.root}>
@@ -82,8 +81,6 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit, meta}) => 
                 component={MyTextField}
                 fullWidth={true}
                 variant="outlined"
-                
-
               />
             </Grid>
             <Grid item>
@@ -100,11 +97,12 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit, meta}) => 
             </Grid>
             <Grid item>
               <Button
-                type="submit"
+                //type="submit"
                 variant="contained"
                 fullWidth={true}
                 size="large"
                 color="primary"
+                onClick={fetchPosts}
               >
                 ورود
               </Button>
@@ -146,13 +144,10 @@ const validate = (formValues) => {
   return errors;
 };
 
-
-
-const mapStateToProps = (state) => ({
-
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchPosts: () => dispatch(fetchPosts()),
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
