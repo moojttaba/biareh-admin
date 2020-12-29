@@ -4,17 +4,17 @@ import { Field, reduxForm } from "redux-form";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-// import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { renderTextField } from "./../components/form/material-ui.form";
 import { fetchPosts } from "../redux/API/API.actions";
 import { createStructuredSelector } from "reselect";
-
 import {
   emailSignInStart,
   switchSignUpSignIn,
 } from "../redux/user/user.actions";
+
+import { selectCurrentUser } from "./../redux/user/user.selectors";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,16 +29,18 @@ const SignIN = ({
   switchSignUpSignIn,
   handleSubmit,
   history,
+  myUser,
 }) => {
   const classes = useStyles();
 
-  const onSubmit = ({email,password}) => {
-    emailSignInStart(email, password,() => {
-      // history.push("/");
-    } );
+  const onSubmit = ({ email, password }) => {
+    emailSignInStart(email, password);
+
     // history.push("/");
     //console.log(values);
   };
+
+  console.log(myUser.data.status);
 
   return (
     <Fragment>
@@ -123,14 +125,15 @@ const validate = (formValues) => {
 
 //////////////// REDUX MANAGER
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  myUser: selectCurrentUser,
+});
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
 });
-
 export default reduxForm({
   validate,
   form: "SignInWithEmailAndPassword",

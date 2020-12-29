@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   signUpSwitch: true,
 };
 
+
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UserActionTypes.TOGGLE_SIGN_SWITCH:
