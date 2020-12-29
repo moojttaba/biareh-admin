@@ -28,26 +28,25 @@ const App = ({ isAuthenticated }) => {
   return (
     <ThemeProvider theme={theme}>
       <Fragment>
-        {isAuthenticated === "success" ? null : (
+        {isAuthenticated === "success" ? (
+          <Suspense fallback={<Spinner />}>
+            <Header />
+            <Switch>
+              <Route exact path="/admin" component={HomePage} />
+              <Route exact path="/admin/products" component={ProductsPage} />
+              <Route
+                exact
+                path="/admin/products/new"
+                component={ProductsAddPage}
+              />
+              <Route exact path="/admin/Profile" component={ProfilePage} />
+            </Switch>
+          </Suspense>
+        ) : (
           <Suspense fallback={<Spinner />}>
             <Route exact path="/" component={SignInAndSignUpPage} />
           </Suspense>
         )}
-    
-
-        {/* <Suspense fallback={<Spinner />}>
-          <Header />
-          <Switch>
-            <Route exact path="/admin" component={HomePage} />
-            <Route exact path="/admin/products" component={ProductsPage} />
-            <Route
-              exact
-              path="/admin/products/new"
-              component={ProductsAddPage}
-            />
-            <Route exact path="/admin/Profile" component={ProfilePage} />
-          </Switch>
-        </Suspense> */}
       </Fragment>
     </ThemeProvider>
   );

@@ -7,7 +7,6 @@ const INITIAL_STATE = {
     data: {
       user: null,
     },
-   
   },
   error: null,
   signUpSwitch: true,
@@ -35,7 +34,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
-        currentUser: null,
+        currentUser: {
+          status: null,
+          token: null,
+          data: {
+            user: null,
+          },
+        },
         error: null,
       };
     case UserActionTypes.SIGN_IN_FAILURE:
