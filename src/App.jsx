@@ -2,6 +2,7 @@
 import { lazy, Suspense, Fragment } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/user.selectors";
 //////////////////////////////////////////// styles
 import theme from "./styles/theme.jsx";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -11,6 +12,7 @@ import { Route, Switch } from "react-router-dom";
 import Spinner from "./components/spinner.component";
 import Header from "./layouts/header.layouts";
 // import HeaderSaveProduct from "./layouts/HeaderSaveProduct.layouts";
+
 //////////////////////////////////////////// PAGES
 const HomePage = lazy(() => import("./pages/home.page"));
 const ProductsPage = lazy(() => import("./pages/products.page"));
@@ -37,9 +39,10 @@ const App = () => {
         <Suspense fallback={<Spinner />}>
           <Route exact path="/" component={SignInAndSignUpPage} />
         </Suspense>
-        <Switch>
+
+        {/* <Suspense fallback={<Spinner />}>
           <Header />
-          <Suspense fallback={<Spinner />}>
+          <Switch>
             <Route exact path="/admin" component={HomePage} />
             <Route exact path="/admin/products" component={ProductsPage} />
             <Route
@@ -47,17 +50,17 @@ const App = () => {
               path="/admin/products/new"
               component={ProductsAddPage}
             />
-
             <Route exact path="/admin/Profile" component={ProfilePage} />
-          </Suspense>
-        </Switch>{" "}
-        */}
+          </Switch>
+        </Suspense> */}
       </Fragment>
     </ThemeProvider>
   );
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectCurrentUser ,
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 

@@ -14,8 +14,6 @@ import {
   switchSignUpSignIn,
 } from "../redux/user/user.actions";
 
-import { selectCurrentUser } from "./../redux/user/user.selectors";
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
@@ -24,22 +22,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIN = ({
-  emailSignInStart,
-  switchSignUpSignIn,
-  handleSubmit,
-  history,
-  myUser,
-}) => {
+const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
   const classes = useStyles();
 
   const onSubmit = ({ email, password }) => {
     emailSignInStart(email, password);
-
-    // history.push("/");
-    //console.log(values);
   };
-
 
   return (
     <Fragment>
@@ -124,9 +112,7 @@ const validate = (formValues) => {
 
 //////////////// REDUX MANAGER
 
-const mapStateToProps = createStructuredSelector({
-  myUser: selectCurrentUser,
-});
+const mapStateToProps = createStructuredSelector({});
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
