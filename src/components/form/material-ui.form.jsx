@@ -1,4 +1,4 @@
-import { MyTextField } from "./custom-textField.component";
+import { MyTextField } from "./custom-material-ui-form.styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";

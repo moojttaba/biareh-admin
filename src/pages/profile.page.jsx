@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
-import { MyTextField } from "../components/form/custom-textField.component";
+import { MyTextField } from "../components/form/custom-material-ui-form.styles";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {

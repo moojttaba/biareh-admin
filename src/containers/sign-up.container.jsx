@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { switchSignUpSignIn, signUpStart } from "../redux/user/user.actions";
-import { MyTextField } from "../components/form/custom-textField.component";
+import { MyTextField } from "../components/form/custom-material-ui-form.styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
