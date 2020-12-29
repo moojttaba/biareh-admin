@@ -124,6 +124,8 @@ const SignIN = ({
   );
 };
 
+
+
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
   emailSignInStart: (email, password) =>
