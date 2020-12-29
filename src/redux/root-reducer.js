@@ -10,7 +10,7 @@ import { reducer as formReducer } from 'redux-form';
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart"],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({

@@ -229,8 +229,8 @@ const ProfilePage = ({ user, token }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUserProfile,
-  token: selectUserProfileToken,
+  user: selectUserProfile.data.user,
+  token: selectUserProfileToken.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

@@ -1,7 +1,14 @@
 import UserActionTypes from "./user.types";
 
 const INITIAL_STATE = {
-  currentUser: null,
+  currentUser: {
+    status: null,
+    token: null,
+    data: {
+      user: null,
+    },
+   
+  },
   error: null,
   signUpSwitch: true,
 };

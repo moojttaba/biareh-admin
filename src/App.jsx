@@ -1,6 +1,8 @@
 //////////////////////////////////////////// React - Redux
 import { lazy, Suspense, Fragment } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUserStatus } from "./redux/user/user.selectors";
 //////////////////////////////////////////// styles
 import theme from "./styles/theme.jsx";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -26,32 +28,33 @@ const App = ({ isAuthenticated }) => {
   return (
     <ThemeProvider theme={theme}>
       <Fragment>
-        {isAuthenticated === "success" ? (
-          <Suspense fallback={<Spinner />}>
-            <Header />
-            <Switch>
-              <Route exact path="/admin" component={HomePage} />
-              <Route exact path="/admin/products" component={ProductsPage} />
-              <Route
-                exact
-                path="/admin/products/new"
-                component={ProductsAddPage}
-              />
-              <Route exact path="/admin/Profile" component={ProfilePage} />
-            </Switch>
-          </Suspense>
-        ) : (
+        {isAuthenticated === "success" ? null : (
           <Suspense fallback={<Spinner />}>
             <Route exact path="/" component={SignInAndSignUpPage} />
           </Suspense>
         )}
+    
+
+        {/* <Suspense fallback={<Spinner />}>
+          <Header />
+          <Switch>
+            <Route exact path="/admin" component={HomePage} />
+            <Route exact path="/admin/products" component={ProductsPage} />
+            <Route
+              exact
+              path="/admin/products/new"
+              component={ProductsAddPage}
+            />
+            <Route exact path="/admin/Profile" component={ProfilePage} />
+          </Switch>
+        </Suspense> */}
       </Fragment>
     </ThemeProvider>
   );
 };
 
-const mapStateToProps = ({ currentUser }) => ({
-  isAuthenticated: currentUser,
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectCurrentUserStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
