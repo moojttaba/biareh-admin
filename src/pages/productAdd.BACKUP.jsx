@@ -7,7 +7,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { MyTextField } from "./../components/custom-textField.component";
+import { renderTextField } from "./../components/form/material-ui.form";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,22 +53,6 @@ const ProductAddPage = (props) => {
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
   const classes = useStyles();
 
-  const renderInput = ({ input, label, meta }) => {
-    return (
-      <Fragment>
-        <MyTextField
-          {...input}
-          label={label}
-          variant="outlined"
-          helperText={meta.error}
-          inputProps={{
-            autoComplete: "off",
-          }}
-        />
-      </Fragment>
-    );
-  };
-
   const onSubmit = (formValues) => {};
 
   return (
@@ -91,16 +75,18 @@ const ProductAddPage = (props) => {
                 <Box mt={2}>
                   <Field
                     name="title"
-                    component={renderInput}
+                    component={renderTextField}
                     label="enter title"
-                    //required
+                    fullWidth={true}
+                    variant="outlined"
                   />
                 </Box>
                 <Box mt={2}>
                   <Field
                     name="description"
-                    component={renderInput}
+                    component={renderTextField}
                     label="enter description"
+                    variant="outlined"
                     required
                   />
                 </Box>

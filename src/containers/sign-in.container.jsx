@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 import Button from "@material-ui/core/Button";
-import { MyTextField } from "../components/custom-textField.component";
+import { MyTextField } from "../components/form/custom-textField.component";
 
 import {
   emailSignInStart,
