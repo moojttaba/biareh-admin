@@ -24,7 +24,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     }).then((response) => response.data);
     if (user.status === "success") {
       return window.setTimeout(() => {
-        location.assign("/");
+        location.assign("/admin");
       }, 1500);
     }
     yield put(signInSuccess(user));

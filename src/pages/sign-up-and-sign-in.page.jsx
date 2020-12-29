@@ -22,7 +22,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    paddingRight: 240,
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(1),
       paddingRight: 0,

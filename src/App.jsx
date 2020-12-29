@@ -34,25 +34,24 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Fragment>
-        {/* {value === 1 ? <HeaderSaveProduct /> : <Header />} */}
-        <Header />
+        <Suspense fallback={<Spinner />}>
+          <Route exact path="/" component={SignInAndSignUpPage} />
+        </Suspense>
         <Switch>
+          <Header />
           <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/admin" component={HomePage} />
             <Route exact path="/admin/products" component={ProductsPage} />
             <Route
               exact
               path="/admin/products/new"
               component={ProductsAddPage}
             />
-            <Route
-              exact
-              path="/SignInAndSignUpPage"
-              component={SignInAndSignUpPage}
-            />
-            <Route exact path="/Profile" component={ProfilePage} />
+
+            <Route exact path="/admin/Profile" component={ProfilePage} />
           </Suspense>
-        </Switch>
+        </Switch>{" "}
+        */}
       </Fragment>
     </ThemeProvider>
   );

@@ -40,7 +40,6 @@ const SignIN = ({
     //console.log(values);
   };
 
-  console.log(myUser.data.status);
 
   return (
     <Fragment>

@@ -194,21 +194,12 @@ const Header = ({ toggleDrawerHidden, signOutStart }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem
-        onClick={handleMenuClose}
-        component={Link}
-        to="/SignInAndSignUpPage"
-      >
-        ورود
-      </MenuItem>
-      <MenuItem
-        onClick={handleMenuClose}
-        component={Link}
-        to="/profile"
-      >
+      <MenuItem onClick={handleMenuClose} component={Link} to="/admin/Profile">
         پروفایل
       </MenuItem>
-      <MenuItem onClick={handleMenuCloseLogout}>خروج</MenuItem>
+      <MenuItem onClick={handleMenuCloseLogout} component={Link} to="/">
+        خروج
+      </MenuItem>
     </Menu>
   );
 
