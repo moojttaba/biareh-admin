@@ -22,11 +22,11 @@ export function* signInWithEmail({ payload: { email, password } }) {
         password,
       },
     }).then((response) => response.data);
-    if (user.status === "success") {
-      return window.setTimeout(() => {
-        location.assign("/admin");
-      }, 1500);
-    }
+    // if (user.status === "success") {
+    //   return window.setTimeout(() => {
+    //     location.assign("/admin");
+    //   }, 1500);
+    // }
     yield put(signInSuccess(user));
   } catch (error) {
     yield put(signInFailure(error));
