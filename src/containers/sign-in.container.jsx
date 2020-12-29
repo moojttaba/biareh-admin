@@ -27,6 +27,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const renderTextField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => {
+  return (
+    <MyTextField
+      label={label}
+      placeholder={label}
+      variant="outlined"
+      error={touched && invalid}
+      helperText={touched && error}
+      {...custom}
+      {...input}
+    />
+  );
+};
+
 const SignIN = ({
   emailSignInStart,
 
@@ -127,12 +146,12 @@ const SignIN = ({
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.title) {
-    errors.title = "you must begozii";
+  if (!formValues.email) {
+    errors.email = "you must begozii";
   }
 
-  if (!formValues.description) {
-    errors.description = "you must berini";
+  if (!formValues.password) {
+    errors.password = "you must berini";
   }
 
   return errors;
@@ -151,7 +170,7 @@ export default connect(
   mapDispatchToProps
 )(
   reduxForm({
-    form: "formname",
+    form: "SignInWithEmailAndPassword",
     validate,
   })(SignIN)
 );
