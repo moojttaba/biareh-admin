@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -138,20 +137,10 @@ const validate = (formValues) => {
   return errors;
 };
 
-const mapStateToProps = (state) => ({});
-
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  reduxForm({
-    form: "formname",
-    validate,
-  })(SignIN)
-);
+export default connect(null, mapDispatchToProps)(SignIN);
