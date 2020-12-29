@@ -93,14 +93,8 @@ const SignUp = ({ signUpStart, switchSignUpSignIn, handleSubmit }) => {
               </Button>
             </Grid>
 
-            <Grid item container>
-              <Grid
-                item
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
+            <Grid item container direction="row">
+              <Grid item container justify="center" alignItems="center">
                 <Typography variant="body2" color="textSecondary" component="p">
                   آیا اکانت دارید؟
                   <Button color="primary" onClick={switchSignUpSignIn}>
@@ -118,20 +112,20 @@ const SignUp = ({ signUpStart, switchSignUpSignIn, handleSubmit }) => {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.email) {
+  if (!formValues.name) {
     errors.name = "you must begozii";
   }
 
   if (!formValues.email) {
-    errors.password = "you must berini";
+    errors.email = "you must berini email";
   }
 
-  if (!formValues.email) {
-    errors.password = "you must berini";
+  if (!formValues.password) {
+    errors.password = "you must berini password";
   }
 
-  if (!formValues.email) {
-    errors.passwordConfirm = "you must berini";
+  if (!formValues.passwordConfirm) {
+    errors.passwordConfirm = "you must berini cpaswword";
   }
 
   return errors;

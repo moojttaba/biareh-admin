@@ -72,12 +72,13 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
               </Button>
             </Grid>
 
-            <Grid item container>
+            <Grid item container direction="row">
               <Grid
                 item
                 container
-                direction="row"
-                justify="center"
+                xs={6}
+                sm={3}
+                justify="start"
                 alignItems="center"
               >
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -86,6 +87,18 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
                     ثبت نام
                   </Button>
                 </Typography>
+              </Grid>
+              <Grid
+                item
+                container
+                justify="flex-end"
+                alignItems="center"
+                xs={6}
+                sm={3}
+              >
+                <Button color="primary" onClick={switchSignUpSignIn}>
+                  رمز را فراموش کردید؟
+                </Button>
               </Grid>
             </Grid>
           </Grid>
@@ -116,7 +129,6 @@ const mapDispatchToProps = (dispatch) => ({
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
 });
-
 
 export default reduxForm({
   validate,
