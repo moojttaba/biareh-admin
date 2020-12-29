@@ -36,8 +36,8 @@ const SignIN = ({
 }) => {
   const classes = useStyles();
   const [userCredentials, setUserCredentials] = useState({
-    email: "",
-    password: "",
+    email: null,
+    password: null,
   });
 
   const { email, password } = userCredentials;
