@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -27,86 +27,75 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const renderTextField = ({
-  label,
-  input,
-  meta: { touched, invalid, error },
-  ...custom
-}) => {
-  return (
-    <MyTextField
-      label={label}
-      placeholder={label}
-      variant="outlined"
-      error={touched && invalid}
-      helperText={touched && error}
-      {...custom}
-      {...input}
-    />
-  );
-};
 
-const SignIN = ({
-  emailSignInStart,
 
-  switchSignUpSignIn,
-}) => {
+const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit, meta}) => {
+  const classes = useStyles();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
 
   const { email, password } = userCredentials;
-  const classes = useStyles();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    emailSignInStart(email, password);
-    //login(email, password);
+  
+
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+
+  //   setUserCredentials({ ...userCredentials, [name]: value });
+  // };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   //emailSignInStart(email, password);
+  //   //login(email, password);
+  // };
+
+  const onSubmit = (formValues) => {
+    //emailSignInStart(email, password);
+    //   //login(email, password);
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
 
-    setUserCredentials({ ...userCredentials, [name]: value });
-  };
+
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2} direction="column">
           <Grid
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
             item
             container
-            component="form"
-            onSubmit={handleSubmit}
             spacing={4}
             direction="column"
           >
             <Grid item>
-              <MyTextField
-                fullWidth={true}
-                variant="outlined"
-                className={classes.margin}
-                type="email"
+              <Field
                 name="email"
-                value={email}
-                onChange={handleChange}
+                type="email"
                 label="ایمیل"
                 required
+                value={email}
+                component={MyTextField}
+                fullWidth={true}
+                variant="outlined"
+                
+
               />
             </Grid>
             <Grid item>
-              <MyTextField
-                fullWidth={true}
-                variant="outlined"
-                className={classes.margin}
+              <Field
                 type="password"
                 name="password"
                 value={password}
-                onChange={handleChange}
                 label="رمز عبور"
                 required
+                component={MyTextField}
+                fullWidth={true}
+                variant="outlined"
               />
             </Grid>
             <Grid item>
@@ -157,7 +146,11 @@ const validate = (formValues) => {
   return errors;
 };
 
-const mapStateToProps = (state) => ({});
+
+
+const mapStateToProps = (state) => ({
+
+});
 
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
