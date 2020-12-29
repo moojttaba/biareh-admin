@@ -122,12 +122,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(emailSignInStart({ email, password })),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  reduxForm({
-    form: "SignInWithEmailAndPassword",
-    validate,
-  })(SignIN)
-);
+export default reduxForm({
+  validate,
+  form: "SignInWithEmailAndPassword",
+})(connect(mapStateToProps, mapDispatchToProps)(SignIN));

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import UserActionTypes from "./user.types";
 import axios from "axios";
@@ -21,6 +22,11 @@ export function* signInWithEmail({ payload: { email, password } }) {
         password,
       },
     }).then((response) => response.data);
+    if (user.status === "success") {
+      return window.setTimeout(() => {
+        location.assign("/");
+      }, 1500);
+    }
     yield put(signInSuccess(user));
   } catch (error) {
     yield put(signInFailure(error));
@@ -78,5 +84,3 @@ export function* userSagas() {
     call(onSignUpStart),
   ]);
 }
-
-
