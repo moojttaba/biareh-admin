@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { Fragment } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,8 +7,7 @@ import Paper from "@material-ui/core/Paper";
 // import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { MyTextField } from "../components/form/custom-material-ui-form.styles";
-
+import { renderTextField } from "./../components/form/material-ui.form";
 import { fetchPosts } from "../redux/API/API.actions";
 
 import {
@@ -17,50 +16,24 @@ import {
 } from "../redux/user/user.actions";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
-    maxWidth: 500,
+    minWidth: 400,
   },
 }));
 
-const SignIN = ({
-  emailSignInStart,
-  switchSignUpSignIn,
-  handleSubmit,
-  fetchPosts,
-  meta,
-}) => {
+const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
   const classes = useStyles();
-  const [userCredentials, setUserCredentials] = useState({
-    email: null,
-    password: null,
-  });
 
-  const { email, password } = userCredentials;
+  const onSubmit = (values) => {
+    emailSignInStart(values.email, values.password);
 
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-
-  //   setUserCredentials({ ...userCredentials, [name]: value });
-  // };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   //emailSignInStart(email, password);
-  //   //login(email, password);
-  // };
-
-  const onSubmit = (formValues) => {
-    //emailSignInStart(email, password);
-    //   //login(email, password);
+    console.log(values);
   };
 
   return (
-    <div className={classes.root}>
+    <Fragment>
       <Paper className={classes.paper}>
         <Grid container spacing={2} direction="column">
           <Grid
@@ -76,9 +49,7 @@ const SignIN = ({
                 name="email"
                 type="email"
                 label="ایمیل"
-                required
-                value={email}
-                component={MyTextField}
+                component={renderTextField}
                 fullWidth={true}
                 variant="outlined"
               />
@@ -87,17 +58,15 @@ const SignIN = ({
               <Field
                 type="password"
                 name="password"
-                value={password}
                 label="رمز عبور"
-                required
-                component={MyTextField}
+                component={renderTextField}
                 fullWidth={true}
                 variant="outlined"
               />
             </Grid>
             <Grid item>
               <Button
-                //type="submit"
+                type="submit"
                 variant="contained"
                 fullWidth={true}
                 size="large"
@@ -127,7 +96,7 @@ const SignIN = ({
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    </Fragment>
   );
 };
 
