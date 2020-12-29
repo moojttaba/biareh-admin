@@ -20,12 +20,12 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Toolbar from "@material-ui/core/Toolbar";
 
-
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    marginTop: theme.spacing(1),
+    paddingRight: 240,
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(1),
+      paddingRight: 0,
     },
   },
   gridItem: {
@@ -56,11 +56,9 @@ const SignInAndSignUpPage = ({ signUpTrue }) => {
         justify="center"
         alignItems="center"
         direction={matches ? "column" : "row"}
-       
-        
       >
-        <Grid item className={classes.gridItem} xs={3} >
-          <Grid container spacing={3} direction="column"   alignItems="center">
+        <Grid item className={classes.gridItem} xs={3}>
+          <Grid container spacing={3} direction="column" alignItems="center">
             <Grid item className={classes.link}>
               <Typography variant="h4" color="textSecondary">
                 خوش امدید
@@ -77,14 +75,13 @@ const SignInAndSignUpPage = ({ signUpTrue }) => {
           </Grid>
         </Grid>
 
-        <Grid item className={classes.gridItem} xs={3} >
+        <Grid item className={classes.gridItem} xs={3}>
           <Grid container spacing={2} direction="column">
             {signUpTrue ? <SignIn /> : <SignUp />}
           </Grid>
         </Grid>
       </Grid>
       <Toolbar />
-    
     </React.Fragment>
   );
 };
