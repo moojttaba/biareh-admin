@@ -124,7 +124,18 @@ const SignIN = ({
   );
 };
 
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.title) {
+    errors.title = "you must begozii";
+  }
 
+  if (!formValues.description) {
+    errors.description = "you must berini";
+  }
+
+  return errors;
+};
 
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
