@@ -63,31 +63,16 @@ const ProfilePage = ({ user, token }) => {
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
   const classes = useStyles();
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    photo: "",
-  });
 
-  const { name, email, photo } = userData;
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // updateSettings(userData)
-    updateSettings(userData, token);
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUserData({ ...userData, [name]: value });
-  };
-  const handleClick = () => {};
-
-  console.log(photo);
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   // updateSettings(userData)
+  //   updateSettings(userData, token);
+  // };
 
   return (
     <Fragment>
-      <Box className={classes.root} component="form" onSubmit={handleSubmit}>
+      <Box className={classes.root} component="form">
         <Box
           width={matches ? "60%" : "90%"}
           mb={2.4}
@@ -100,7 +85,10 @@ const ProfilePage = ({ user, token }) => {
               <CardHeader
                 classes={{ action: classes.action }}
                 avatar={
-                  <Avatar alt={user.name} src={`img/users/${user.photo}`} />
+                  <Avatar
+                  //alt={user.name}
+                  // src={`img/users/${user.photo}`}
+                  />
                 }
                 action={
                   <Fragment>
@@ -108,7 +96,6 @@ const ProfilePage = ({ user, token }) => {
                       variant="outlined"
                       color="secondary"
                       style={{ marginLeft: 10 }}
-                      onClick={handleClick}
                     >
                       اپلود عکس
                     </Button>
@@ -133,13 +120,13 @@ const ProfilePage = ({ user, token }) => {
                       variant="outlined"
                       type="text"
                       name="name"
-                      value={name}
-                      onChange={handleChange}
+                      //value={name}
+
                       label="نام"
-                      placeholder={user.name}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
+                      // placeholder={user.name}
+                      // InputLabelProps={{
+                      //   shrink: true,
+                      // }}
                     />
                   </Box>
                   <Box width="50%" mr={2}>
@@ -149,7 +136,7 @@ const ProfilePage = ({ user, token }) => {
                       type="text"
                       name="lastName"
                       //value={lastName}
-                      onChange={handleChange}
+
                       label="نام خانوادگی"
                       //placeholder={lastName}
                       InputLabelProps={{
@@ -172,8 +159,8 @@ const ProfilePage = ({ user, token }) => {
                       type="file"
                       accept="image/*"
                       name="photo"
-                      value={photo}
-                      onChange={handleChange}
+                      //value={photo}
+
                       label="عکس"
                       //placeholder={mobail}
                       InputLabelProps={{
@@ -188,10 +175,10 @@ const ProfilePage = ({ user, token }) => {
                       variant="outlined"
                       type="email"
                       name="email"
-                      value={email}
-                      onChange={handleChange}
+                      // value={email}
+
                       label="ایمیل"
-                      placeholder={user.email}
+                      // placeholder={user.email}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -229,8 +216,8 @@ const ProfilePage = ({ user, token }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUserProfile.data.user,
-  token: selectUserProfileToken.token,
+  //user: selectUserProfile.data.user,
+  //token: selectUserProfileToken.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
