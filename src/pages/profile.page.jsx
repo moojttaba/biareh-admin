@@ -13,10 +13,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import { updateSettings } from "./../api/axios.utils";
-import {
-  renderTextField,
-  renderTextFieldUpload,
-} from "./../components/form/material-ui.form";
+import { renderTextField } from "./../components/form/material-ui.form";
 import {
   selectUserProfile,
   selectUserProfileToken,
@@ -202,7 +199,6 @@ const ProfilePage = ({ user, token, handleSubmit }) => {
 
 const validate = (formValues) => {
   const errors = {};
- 
 
   return errors;
 };
