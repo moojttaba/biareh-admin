@@ -31,6 +31,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         currentUser: action.payload,
         error: null,
       };
+    case UserActionTypes.UPDATE_MY_PROFILE:
+      return {
+        ...state,
+        currentUser: action.payload,
+        error: null,
+      };
     case UserActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,

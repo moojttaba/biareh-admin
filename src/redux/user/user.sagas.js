@@ -10,6 +10,7 @@ import {
   signOutFailure,
   signUpSuccess,
   signUpFailure,
+  updateMyProfile,
 } from "./user.actions";
 
 export function* signInWithEmail({ payload: { email, password } }) {

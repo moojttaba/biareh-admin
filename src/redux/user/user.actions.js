@@ -1,10 +1,13 @@
 import UserActionTypes from "./user.types";
 
-
 export const switchSignUpSignIn = () => ({
   type: UserActionTypes.TOGGLE_SIGN_SWITCH,
 });
 
+export const updateMyProfile = (user) => ({
+  type: UserActionTypes.UPDATE_MY_PROFILE,
+  payload: user,
+});
 
 export const signInSuccess = (user) => ({
   type: UserActionTypes.SIGN_IN_SUCCESS,
