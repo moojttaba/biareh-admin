@@ -131,6 +131,7 @@ const validate = (formValues) => {
   return errors;
 };
 
+
 const mapDispatchToProps = (dispatch) => ({
   switchSignUpSignIn: () => dispatch(switchSignUpSignIn()),
   signUpStart: (name, email, password, passwordConfirm) =>

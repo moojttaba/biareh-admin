@@ -10,8 +10,32 @@ import {
   signOutFailure,
   signUpSuccess,
   signUpFailure,
-  updateMyProfile,
+  updateMyProfileStart,
+  updateMyProfileSuccess,
+  updateMyProfileStartFailure,
 } from "./user.actions";
+
+export function* updateProfile({ payload: { data, token } }) {
+  try {
+    const user = yield axios({
+      method: "PATCH",
+      url: "/api/v1/users/updateMe",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      data,
+    });
+    if (res.data.status === "success") {
+      console.log(res);
+      showAlert("success", `updated successfully!`);
+    }
+
+    yield put(updateMyProfileSuccess(user));
+  } catch (error) {
+    yield put(updateMyProfileStartFailure(error));
+  }
+}
 
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
@@ -66,6 +90,10 @@ export function* signUp({
   }
 }
 
+export function* onUpdateMyProfileStart() {
+  yield takeLatest(UserActionTypes.UPDATE_MY_PROFILE_START, updateProfile);
+}
+
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
@@ -80,6 +108,7 @@ export function* onSignUpStart() {
 
 export function* userSagas() {
   yield all([
+    call(onUpdateMyProfileStart),
     call(onEmailSignInStart),
     call(onSignOutStart),
     call(onSignUpStart),

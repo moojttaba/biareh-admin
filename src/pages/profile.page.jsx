@@ -18,6 +18,7 @@ import {
   selectUserProfile,
   selectUserProfileToken,
 } from "./../redux/user/user.selectors";
+// import { updateMyProfileStart } from "./../redux/user/user.actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,14 +59,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfilePage = ({ user, token, handleSubmit }) => {
+const ProfilePage = ({ user, token, handleSubmit, updateMyProfileStart }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
   const classes = useStyles();
 
   const onSubmit = (values) => {
-    console.log(values);
     updateSettings(values, token);
   };
 
@@ -208,7 +208,7 @@ const mapStateToProps = createStructuredSelector({
   token: selectUserProfileToken,
 });
 const mapDispatchToProps = (dispatch) => ({
-  updateSettings,
+  // updateMyProfileStart: () => dispatch(updateMyProfileStart()),
 });
 
 export default reduxForm({

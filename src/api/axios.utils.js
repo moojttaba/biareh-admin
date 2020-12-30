@@ -18,6 +18,7 @@ export const updateSettings = async (data, token) => {
       data,
     });
     if (res.data.status === "success") {
+      console.log(res);
       showAlert("success", `updated successfully!`);
     }
   } catch (err) {

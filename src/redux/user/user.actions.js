@@ -4,9 +4,19 @@ export const switchSignUpSignIn = () => ({
   type: UserActionTypes.TOGGLE_SIGN_SWITCH,
 });
 
-export const updateMyProfile = (user) => ({
-  type: UserActionTypes.UPDATE_MY_PROFILE,
+export const updateMyProfileStart = (profileDataUpdate) => ({
+  type: UserActionTypes.UPDATE_MY_PROFILE_START,
+  payload: profileDataUpdate,
+});
+
+export const updateMyProfileSuccess = (user) => ({
+  type: UserActionTypes.UPDATE_MY_PROFILE_SUCCESS,
   payload: user,
+});
+
+export const updateMyProfileStartFailure = (error) => ({
+  type: UserActionTypes.UPDATE_MY_PROFILE_FAILURE,
+  payload: error,
 });
 
 export const signInSuccess = (user) => ({
@@ -16,7 +26,6 @@ export const signInSuccess = (user) => ({
 
 export const signInFailure = (error) => ({
   type: UserActionTypes.SIGN_IN_FAILURE,
-  payload: error,
 });
 
 export const emailSignInStart = (emailAndPassword) => ({
