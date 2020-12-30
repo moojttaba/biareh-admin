@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -72,35 +73,24 @@ const SignIN = ({ emailSignInStart, switchSignUpSignIn, handleSubmit }) => {
               </Button>
             </Grid>
 
-            <Grid item container direction="row">
-              <Grid
-                item
-                container
-                xs={6}
-                sm={3}
-                justify="start"
-                alignItems="center"
-              >
+            <Box
+              display="flex"
+              style={{ padding: 20, justifyContent: "space-between" }}
+            >
+              <Box>
                 <Typography variant="body2" color="textSecondary" component="p">
                   آیا اکانت ندارید؟
                   <Button color="primary" onClick={switchSignUpSignIn}>
                     ثبت نام
                   </Button>
                 </Typography>
-              </Grid>
-              <Grid
-                item
-                container
-                justify="flex-end"
-                alignItems="center"
-                xs={6}
-                sm={3}
-              >
+              </Box>
+              <Box>
                 <Button color="primary" onClick={switchSignUpSignIn}>
                   رمز را فراموش کردید؟
                 </Button>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Paper>
