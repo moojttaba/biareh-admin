@@ -10,7 +10,6 @@ import {
   signOutFailure,
   signUpSuccess,
   signUpFailure,
-  updateMyProfileStart,
   updateMyProfileSuccess,
   updateMyProfileStartFailure,
 } from "./user.actions";
@@ -25,11 +24,10 @@ export function* updateProfile({ payload: { data, token } }) {
         "Content-Type": "application/json",
       },
       data,
-    });
-    if (res.data.status === "success") {
-      console.log(res);
-      showAlert("success", `updated successfully!`);
-    }
+    }).then((response) => response.data);
+    // if (res.data.status === "success") {
+    //   showAlert("success", `updated successfully!`);
+    // }
 
     yield put(updateMyProfileSuccess(user));
   } catch (error) {

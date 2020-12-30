@@ -29,16 +29,20 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload,
+        error: null,
       };
     case UserActionTypes.UPDATE_MY_PROFILE_SUCCESS:
       return {
         ...state,
         currentUser: action.payload,
+        error: null,
+      
       };
     case UserActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
         currentUser: action.payload,
+        error: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return {
