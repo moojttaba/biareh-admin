@@ -12,13 +12,13 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
-import { updateSettings } from "./../api/axios.utils";
+// import { updateSettings } from "./../api/axios.utils";
 import { renderTextField } from "./../components/form/material-ui.form";
 import {
   selectUserProfile,
   selectUserProfileToken,
 } from "./../redux/user/user.selectors";
-// import { updateMyProfileStart } from "./../redux/user/user.actions";
+import { updateMyProfileStart } from "./../redux/user/user.actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +66,7 @@ const ProfilePage = ({ user, token, handleSubmit, updateMyProfileStart }) => {
   const classes = useStyles();
 
   const onSubmit = (values) => {
-    updateSettings(values, token);
+    updateMyProfileStart(values, token);
   };
 
   return (
@@ -208,7 +208,8 @@ const mapStateToProps = createStructuredSelector({
   token: selectUserProfileToken,
 });
 const mapDispatchToProps = (dispatch) => ({
-  // updateMyProfileStart: () => dispatch(updateMyProfileStart()),
+  updateMyProfileStart: (values, token) =>
+    dispatch(updateMyProfileStart({ values, token })),
 });
 
 export default reduxForm({
