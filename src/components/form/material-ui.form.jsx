@@ -7,6 +7,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import InputBase from "@material-ui/core/InputBase";
 
 //import asyncValidate from './asyncValidate'
 //import { Field, reduxForm } from 'redux-form'
@@ -26,6 +27,7 @@ export const renderTextField = ({
     {...custom}
   />
 );
+
 
 export const renderCheckbox = ({ input, label }) => (
   <div>
@@ -82,8 +84,6 @@ export const renderSelectField = ({
     {renderFromHelper({ touched, error })}
   </FormControl>
 );
-
-
 
 // const MaterialUiForm = props => {
 //   const { handleSubmit, pristine, reset, submitting, classes } = props

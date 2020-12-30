@@ -1,5 +1,7 @@
-import { useState } from "react";
 import { Fragment } from "react";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -10,14 +12,15 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
-import { MyTextField } from "../components/form/custom-material-ui-form.styles";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { updateSettings } from "./../api/axios.utils";
+import {
+  renderTextField,
+  renderTextFieldUpload,
+} from "./../components/form/material-ui.form";
 import {
   selectUserProfile,
   selectUserProfileToken,
 } from "./../redux/user/user.selectors";
-import { updateSettings } from "./../api/axios.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,21 +61,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfilePage = ({ user, token }) => {
+const ProfilePage = ({ user, token, handleSubmit }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
 
   const classes = useStyles();
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   // updateSettings(userData)
-  //   updateSettings(userData, token);
-  // };
+  const onSubmit = (values) => {
+    console.log(values);
+    updateSettings(values, token);
+  };
 
   return (
     <Fragment>
-      <Box className={classes.root} component="form">
+      <Box
+        className={classes.root}
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Box
           width={matches ? "60%" : "90%"}
           mb={2.4}
@@ -115,30 +121,28 @@ const ProfilePage = ({ user, token }) => {
                   mt={2}
                 >
                   <Box width="50%" ml={2}>
-                    <MyTextField
+                    <Field
+                      component={renderTextField}
                       fullWidth={true}
                       variant="outlined"
                       type="text"
                       name="name"
-                      //value={name}
-
                       label="نام"
-                      // placeholder={user.name}
-                      // InputLabelProps={{
-                      //   shrink: true,
-                      // }}
+                      placeholder={user.name}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
                     />
                   </Box>
                   <Box width="50%" mr={2}>
-                    <MyTextField
+                    <Field
+                      component={renderTextField}
                       fullWidth={true}
                       variant="outlined"
                       type="text"
                       name="lastName"
-                      //value={lastName}
-
                       label="نام خانوادگی"
-                      //placeholder={lastName}
+                      placeholder={user.lastName}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -152,44 +156,25 @@ const ProfilePage = ({ user, token }) => {
                   alignItems="center"
                   mt={2}
                 >
-                  <Box width="50%" ml={2}>
-                    <MyTextField
-                      fullWidth={true}
-                      variant="outlined"
-                      type="file"
-                      accept="image/*"
-                      name="photo"
-                      //value={photo}
-
-                      label="عکس"
-                      //placeholder={mobail}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      // required
-                    />
-                  </Box>
-                  <Box width="50%" mr={2}>
-                    <MyTextField
+                  <Box width="100%">
+                    <Field
+                      component={renderTextField}
                       fullWidth={true}
                       variant="outlined"
                       type="email"
                       name="email"
-                      // value={email}
-
                       label="ایمیل"
-                      // placeholder={user.email}
+                      placeholder={user.email}
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      // required
                     />
                   </Box>
                 </Box>
               </CardContent>
             </Card>
           </Box>
-          {/*/////////// FOOTER //////////////*/}
+          {/*///////////SUBMIT FOOTER //////////////*/}
         </Box>
         <Box className={classes.footer} mt={3}>
           <Box mr={2}>
@@ -215,11 +200,22 @@ const ProfilePage = ({ user, token }) => {
   );
 };
 
+const validate = (formValues) => {
+  const errors = {};
+ 
+
+  return errors;
+};
+
 const mapStateToProps = createStructuredSelector({
-  //user: selectUserProfile.data.user,
-  //token: selectUserProfileToken.token,
+  user: selectUserProfile,
+  token: selectUserProfileToken,
+});
+const mapDispatchToProps = (dispatch) => ({
+  updateSettings,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default reduxForm({
+  validate,
+  form: "myProfile",
+})(connect(mapStateToProps, mapDispatchToProps)(ProfilePage));

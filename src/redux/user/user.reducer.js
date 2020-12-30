@@ -5,7 +5,13 @@ const INITIAL_STATE = {
     status: null,
     token: null,
     data: {
-      user: null,
+      user: {
+        photo: null,
+        role: null,
+        _id: null,
+        name: null,
+        email: null,
+      },
     },
   },
   error: null,
@@ -38,7 +44,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
           status: null,
           token: null,
           data: {
-            user: null,
+            user: {
+              photo: null,
+              role: null,
+              _id: null,
+              name: null,
+              email: null,
+            },
           },
         },
         error: null,
